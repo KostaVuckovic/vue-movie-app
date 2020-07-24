@@ -1,4 +1,4 @@
-# vue_nasa_project
+# vue_movie_project
 
 ## Project setup
 ```
