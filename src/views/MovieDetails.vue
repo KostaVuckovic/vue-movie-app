@@ -1,8 +1,8 @@
 <template>
-  <div v-if="movieDetails" class="bg-background-svetla mb-16 lg:mb-0 lg:ml-16" :class="[{getTheme}, getTheme === 'theme-dark' ? 'wrapper' : 'light-wrapper']">
-    <div class="w-full max-w-mediumGodzila xl:mx-auto relative overflow-hidden object-cover">
-    <img :src="'https://image.tmdb.org/t/p/w1280' + backDrop + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" alt="movie_image" class="hidden lg:block rounded absolute top-0 left-0 object-cover" :class="getTheme === 'theme-dark' ? 'opacity-10' : 'opacity-20'">
-    <div class="flex flex-col lg:flex-row items-center lg:items-start px-6 py-6 z-30 overflow-hidden">
+  <div v-if="movieDetails" class="content-wrapper bg-background-svetla mb-16 lg:mb-0 lg:ml-16" :class="[{getTheme}, getTheme === 'theme-dark' ? 'wrapper' : 'light-wrapper']">
+    <div class="w-full max-w-mediumGodzila xl:mx-auto relative overflow-hidden object-cover py-4">
+    <img :src="'https://image.tmdb.org/t/p/w1280' + backDrop + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" alt="movie_image" class="hidden lg:block rounded absolute top-0 left-0 w-full" :class="getTheme === 'theme-dark' ? 'opacity-10' : 'opacity-20'">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start px-6 py-6 z-30">
         <img :src="'https://image.tmdb.org/t/p/w300' + movieImage + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" @error="defaultImage" alt="movie_image" class="rounded w-full max-w-medium sm:max-w-large mb-4 lg:mr-6 z-30">
       
         <div class="flex flex-col z-30">

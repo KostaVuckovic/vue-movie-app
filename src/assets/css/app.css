@@ -41,7 +41,6 @@
 html,body{
   scroll-behavior:smooth;
   font-family: 'Krub', sans-serif;
-  background-color: #222831
 }
 
 body::-webkit-scrollbar{
@@ -57,7 +56,11 @@ body::-webkit-scrollbar-thumb{
 }
 
 .page-enter-active, .page-leave-active {
-  transition: opacity .2s, transform .2s;
+  transition: opacity 1s, transform .3s;
+}
+
+.page-enter-active {
+  transition-delay: .2s;
 }
 .page-enter, .page-leave-to {
   opacity: 0;

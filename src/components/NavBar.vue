@@ -16,20 +16,20 @@
           <li class="item w-full" @click="hideGenresIfOpen()">
             <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover" :class="getTheme">
               <i class="fas fa-home text-3xl my-0 lg:mx-3"></i>
-              <span class="hidden ml-4 text-xl lg:group-hover:block">Home</span>
+              <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Home</span>
             </router-link>
           </li>
 
           <li class="item w-full lg:active:text-narandza" @click="showGenres" :class="{active: isActive}">
             <p class="flex items-center justify-center lg:justify-start h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 cursor-pointer hover:bg-background-svetlija hover:text-copy-nav_link_hover">
               <i class="fas fa-align-justify text-3xl my-0 lg:mx-4"></i>
-              <span class="hidden ml-4 text-xl lg:group-hover:block">Genres</span>
+              <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Genres</span>
             </p>
-            <div class="genres w-full md:max-w-largeMonster md:mx-auto max-h-extraLarge lg:max-h-full hidden overflow-y-scroll lg:overflow-y-hidden overflow-x-hidden absolute lg:static bottom-6xl lg:bottom-auto left-0 lg:left-auto right-0 lg:right-auto bg-background-pozadina cursor-pointer group" :class="getTheme">
-              <h1 class="text-2xl text-center py-3 text-narandza lg:hidden">Popular genres</h1>
+            <div class="genres w-full md:max-w-largeMonster md:mx-auto max-h-extraLarge lg:max-h-full hidden overflow-y-hidden lg:overflow-y-hidden overflow-x-hidden absolute lg:static bottom-6xl lg:bottom-auto left-0 lg:left-auto right-0 lg:right-auto bg-background-pozadina cursor-pointer group" :class="getTheme">
+              <h1 class="text-2xl text-center py-3 text-narandza lg:hidden font-medium">Popular genres</h1>
               <div class="flex flex-wrap">
                  <div class="text-center text-tiny lg:text-base text-copy-tekst hover:bg-tekst hover:text-narandza py-2 lg:py-4 w-1/2 lg:w-full" v-for="genre in genres" :key="genre.id">
-                <router-link :to="{ name: 'MoviesPerGenre', params: {genre: genre.id }}" class="block w-full transform group-hover:scale-105">
+                <router-link :to="{ name: 'MoviesPerGenre', params: {genre: genre.id }}" class="block w-full">
                   {{genre.name}}
                 </router-link>
               </div>
@@ -41,7 +41,7 @@
           <li class="item w-full bg-background-pozadina" :class="getTheme">
             <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover">
               <i class="far fa-calendar-check text-3xl my-0 mx-4"></i>
-              <span class="hidden ml-4 text-xl lg:group-hover:block">Year</span>
+              <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Year</span>
             </router-link>
           </li>
 
@@ -49,8 +49,8 @@
             <p class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover">
               <span key="fa-sun" v-if="getTheme==='theme-dark'"><i class="fas fa-sun text-3xl my-0 mx-4"></i></span>
               <span key="fa-moon" v-else ><i class="fas fa-moon text-3xl my-0 mx-4"></i></span>
-              <span v-if="getTheme==='theme-dark'" class="hidden ml-4 text-xl lg:group-hover:block">Light</span>
-              <span v-else class="hidden ml-4 text-xl lg:group-hover:block">Dark</span>
+              <span v-if="getTheme==='theme-dark'" class="hidden ml-4 text-xl lg:group-hover:block font-medium">Light</span>
+              <span v-else class="hidden ml-4 text-xl lg:group-hover:block font-medium">Dark</span>
             </p>
           </li>
 
