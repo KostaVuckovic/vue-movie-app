@@ -2,7 +2,7 @@
   <div class="pt-4 mb-16 lg:mb-0 lg:ml-16" :class="getTheme">
     <h1 class="text-copy-tekst text-2xl text-center mb-6">Most popular movies</h1>
     
-    <div class="flex justify-center py-4 px-3 bg-background-svetla">
+    <div class="flex justify-center py-4 px-3 bg-background-svetla content-wrapper">
       <div class="flex justify-around flex-wrap py-6 w-full sm:max-w-extraMonster md:w-14/15   md:max-w-extraLargeMonster lg:max-w-full lg:min-w-full xl:w-full xl:min-w-godzila xl:max-w-mediumGodzila">
       <div v-for="(movie, index) in allPopularMovies" :key="index" class="flex flex-col justify-evenly px-3 py-3 mx-3 lg:mx-2 xl:mx-3 mb-4 w-2/5 lg:w-2/13 min-w-smaller max-w-smallMed lg:min-w-smaller lg:max-w-smallHalf rounded bg-background-pozadina text-copy-tekst transition-all duration-300 cursor-pointer transform hover:border-narandza hover:scale-105" @click="movieDetails(movie.id)">
         <p class="text-center font-medium truncate mb-4">{{movie.title}}</p>

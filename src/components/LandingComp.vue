@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center py-12" :class="getTheme === 'theme-dark' ? 'land' : 'light-theme-background'">
+  <div class="flex flex-col items-center py-12 transition-all duration-200" :class="getTheme === 'theme-dark' ? 'land' : 'light-theme-background'">
     <div class="flex flex-col items-center group">
       <div class="relative w-full flex flex-col justify-center items-center">
         <img src="../../src/assets/cinema.svg" alt="movieglasses" class="w-36 sm:w-48 xl:w-56 transition-all duration-300 transform lg:group-hover:scale-75">

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="font-body bg-background-pozadina" :class="getTheme"> 
+  <div id="app" class="font-body bg-background-pozadina content-wrapper" :class="getTheme"> 
     <NavBar />
     <transition name="page" mode="out-in">
     <router-view :key="$route.path" />

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background-svetla py-3 px-2 mt-4" :class="getTheme">
+  <div class="bg-background-svetla py-3 px-2 mt-4 content-wrapper" :class="getTheme">
     <div class="flex justify-between py-1 px-2 text-tekst text-xl">
       <p class="text-narandza text-xl md:text-2xl">Top Rated Movies</p>
       <router-link to="/top-rated" :class="getTheme" class="group hover:text-narandza text-copy-tekst text-xl md:text-2xl transition duration-200 cursor-pointer">View All <i class="fas fa-arrow-circle-right text-copy-tekst group-hover:text-narandza transition duration-200"></i></router-link>
