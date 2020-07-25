@@ -28,10 +28,10 @@
             <div class="genres w-full md:max-w-largeMonster md:mx-auto max-h-extraLarge lg:max-h-full hidden overflow-y-hidden lg:overflow-y-hidden overflow-x-hidden absolute lg:static bottom-6xl lg:bottom-auto left-0 lg:left-auto right-0 lg:right-auto bg-background-pozadina cursor-pointer group" :class="getTheme">
               <h1 class="text-2xl text-center py-3 text-narandza lg:hidden font-medium">Popular genres</h1>
               <div class="flex flex-wrap">
-                 <div class="text-center text-tiny lg:text-base text-copy-tekst hover:bg-tekst hover:text-narandza py-2 lg:py-4 w-1/2 lg:w-full" v-for="genre in genres" :key="genre.id">
-                <router-link :to="{ name: 'MoviesPerGenre', params: {genre: genre.id }}" class="block w-full">
+                 <div class="text-center text-tiny lg:text-base text-copy-tekst hover:bg-tekst hover:text-narandza w-1/2 lg:w-full py-2 lg:py-4" v-for="genre in genres" :key="genre.id" @click="goToGenre(genre.id)">
+                <p class="block w-full">
                   {{genre.name}}
-                </router-link>
+                </p>
               </div>
               </div>
              
@@ -93,6 +93,9 @@ export default {
         this.isActive == false
         document.querySelector('.genres').classList.remove('displaying')
       }
+    },
+    goToGenre(id){
+      this.$router.push({ name: 'MoviesPerGenre', params: {genre: id}})
     },
     ...mapActions(['setTheme'])
   }
