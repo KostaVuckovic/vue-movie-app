@@ -10,7 +10,7 @@
       <div v-for="(movie, index) in upcomingMoviesProp" :key="index" class="flex flex-col justify-evenly px-3 py-3 mx-3 lg:mx-1 mb-4 w-2/5 lg:w-2/13 min-w-smaller max-w-smallMed lg:max-w-smaller rounded bg-background-pozadina text-copy-tekst transition-all duration-300 cursor-pointer transform hover:border-narandza hover:scale-105" :class="getTheme" @click="sendToParent(movie.id)">
         <p class="text-center font-medium tracking-wide text-base mb-4 truncate">{{movie.title}}</p>
         
-        <img :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" class="rounded mt-2">
+        <img :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" @error="defaultImage" class="rounded mt-2">
         <div class="mt-2 text-tiny">
           <p><i class="fas fa-star text-zuta"></i> {{movie.vote_average}}/10</p>
           <p><i class="far fa-calendar-alt text-narandza"></i> {{movie.release_date}}</p>
@@ -35,6 +35,9 @@ export default {
   methods: {
     sendToParent(id){
       this.$emit('sendToParent', id)
+    },
+    defaultImage(e){
+      e.target.src = 'https://media.comicbook.com/files/img/default-movie.png'
     }
   }
 

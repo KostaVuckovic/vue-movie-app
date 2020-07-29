@@ -206,7 +206,8 @@ module.exports = {
       'mediumGodzila': '78rem',
       'largeGodzila': '85rem',
       'extraLargeGodzila': '90rem',
-      'full': '100%'
+      'full': '100%',
+      'screen'	: '100vh'
           },
     minHeight: {
       'smallest': '4rem',
@@ -227,7 +228,9 @@ module.exports = {
       'mediumGodzila': '68rem',
       'largeGodzila': '75rem',
       'extraLargeGodzila': '79rem',
-      'full': '100%'},        
+      'full': '100%',
+      'screen'	: '100vh'
+    },        
     colors: {
       background: {
         tekst: 'var(--bg-background-tekst)',
