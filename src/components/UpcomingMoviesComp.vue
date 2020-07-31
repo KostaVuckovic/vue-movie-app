@@ -6,7 +6,7 @@
     </div>
     
     <div class="w-full flex justify-center">
-      <div class="flex justify-around flex-wrap py-6 w-full sm:max-w-extraMonster md:w-14/15   md:max-w-extraLargeMonster lg:max-w-full lg:min-w-full xl:w-full xl:min-w-godzila xl:max-w-largeGodzila">
+      <div class="flex justify-around flex-wrap py-6 w-full sm:max-w-extraMonster md:w-14/15   md:max-w-extraLargeMonster lg:max-w-full lg:min-w-full xl:w-full xl:min-w-godzila xl:max-w-extraLargeGodzila">
       <div v-for="(movie, index) in upcomingMoviesProp" :key="index" class="flex flex-col justify-evenly px-3 py-3 mx-3 lg:mx-1 mb-4 w-2/5 lg:w-2/13 min-w-smaller max-w-smallMed lg:max-w-smaller rounded bg-background-pozadina text-copy-tekst transition-all duration-300 cursor-pointer transform hover:border-narandza hover:scale-105" :class="getTheme" @click="sendToParent(movie.id)">
         <p class="text-center font-medium tracking-wide text-base mb-4 truncate">{{movie.title}}</p>
         

@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start:css": "postcss index.css -o tailwind.css -w",
+    "build:css": "postcss index.css -o tailwind.css --env production",
+    "build:tailwind": "tailwind build src/assets/css/app.css -o public/buid/tailwind.css"
   },
   "dependencies": {
     "autoprefixer": "^9.8.0",
@@ -23,7 +26,8 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
-    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@fullhuman/vue-cli-plugin-purgecss": "^2.2.0",
     "@vue/cli-plugin-babel": "^4.4.0",
     "@vue/cli-plugin-eslint": "^4.4.0",
     "@vue/cli-plugin-router": "^4.4.1",
@@ -32,6 +36,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "purgecss": "^2.3.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

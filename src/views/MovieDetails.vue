@@ -81,14 +81,13 @@ export default {
       setTimeout(() => {
       axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US`)
       .then(response => {
-        console.log(response.data)
         this.movieDetails = response.data
         this.genresForMovie = response.data.genres
         this.movieImage = response.data.poster_path
         this.backDrop = response.data.backdrop_path
         this.isLoading = false
       })
-      }, 1500)
+      }, 1200)
     },
     getRecommendedMovies(id){
       axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US&page=1`)

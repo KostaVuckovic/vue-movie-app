@@ -20,3 +20,5 @@ export default {
   }
 }
 </script>
+
+<style src="./assets/css/app.css"></style>
