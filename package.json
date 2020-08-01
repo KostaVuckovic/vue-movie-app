@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint",
     "start:css": "postcss index.css -o tailwind.css -w",
     "build:css": "postcss index.css -o tailwind.css --env production",
-    "build:tailwind": "tailwind build src/assets/css/app.css -o public/buid/tailwind.css"
+    "build:tailwind": "tailwind build src/assets/css/app.css -o src/assets/css/output.css"
   },
   "dependencies": {
     "autoprefixer": "^9.8.0",
