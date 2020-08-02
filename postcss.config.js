@@ -8,7 +8,8 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     './src/**/*.jsx',
     // etc.
   ],
-  whitelistPatterns: [/enter$/, /enter-to$/, /leave$/, /leave-to$/, /leave-active$/, /enter-active$/, /move$/, /^vld/, /^is/],
+  whitelist: [/vld-overlay/, /is-active/, /is-full-page/, /vld-background/, /vld-parent/, /vld-icon/], 
+  whitelistPatterns: [/enter$/, /enter-to$/, /leave$/, /leave-to$/, /leave-active$/, /enter-active$/, /move$/,],
 
   // This is the function used to extract class names from your templates
   defaultExtractor: content => {
