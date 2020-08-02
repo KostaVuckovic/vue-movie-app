@@ -3,7 +3,7 @@
 
         <ul class="content-wrapper flex lg:flex-col justify-evenly lg:items-center lg:justify-start py-0 px-0 bg-background-pozadina h-full group" :class="getTheme">
 
-          <li class="item w-full hidden lg:block">
+          <li class="w-full hidden lg:block">
             <router-link to="/" class="flex items-center h-full lg:h-20 text-background-narandza transition-all ease-in-out duration-200" :class="getTheme">
             <div class="hidden transition-all ease-in-out duration-200 w-48 lg:group-hover:flex ml-4">
               <img src="../../src/assets/cinema.svg" alt="movieglasses" class="w-8 mr-1">
@@ -13,14 +13,14 @@
             </router-link>
           </li>
 
-          <li class="item w-full" @click="hideGenresIfOpen()">
+          <li class="w-full" @click="hideGenresIfOpen()">
             <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover" :class="getTheme">
               <i class="fas fa-home text-3xl my-0 lg:mx-3"></i>
               <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Home</span>
             </router-link>
           </li>
 
-          <li class="item w-full lg:active:text-narandza" @click="showGenres" :class="{active: isActive}">
+          <li class=" w-full lg:active:text-narandza" @click="showGenres" :class="{active: isActive}">
             <p class="flex items-center justify-center lg:justify-start h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 cursor-pointer hover:bg-background-svetlija hover:text-copy-nav_link_hover">
               <i class="fas fa-align-justify text-3xl my-0 lg:mx-4"></i>
               <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Genres</span>
@@ -38,14 +38,14 @@
             </div>
           </li>
 
-          <li class="content-wrapper item w-full bg-background-pozadina" :class="getTheme">
+          <li class="content-wrapper w-full bg-background-pozadina" :class="getTheme">
             <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover">
               <i class="far fa-calendar-check text-3xl my-0 mx-4"></i>
               <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Year</span>
             </router-link>
           </li>
 
-          <li class="content-wrapper tem w-full lg:mt-auto bg-background-pozadina cursor-pointer" :class="getTheme" @click="setTheme()">
+          <li class="content-wrapper w-full lg:mt-auto bg-background-pozadina cursor-pointer" :class="getTheme" @click="setTheme()">
             <p class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover">
               <span key="fa-sun" v-if="getTheme==='theme-dark'"><i class="fas fa-sun text-3xl my-0 mx-4"></i></span>
               <span key="fa-moon" v-else ><i class="fas fa-moon text-3xl my-0 mx-4"></i></span>
