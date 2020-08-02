@@ -3,7 +3,7 @@
 @tailwind  components;
 /* purgecss end ignore */
 @tailwind utilities;
-
+/*! purgecss start ignore */
 .theme-light{
   --bg-background-tekst: #0e153a;
   --bg-background-narandza: #ff5722;
@@ -18,7 +18,7 @@
   --text-copy-svetlija: #0e153a;
   --text-copy-nav_link_hover: black;
 }
-
+/*! purgecss end ignore */
 .theme-dark{
   --bg-background-tekst: #eeeeee;
   --bg-background-narandza: #ff5722;
