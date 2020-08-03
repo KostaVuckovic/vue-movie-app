@@ -87,7 +87,7 @@ export default {
           this.totalResults = response.data.total_results
           this.isLoading = false
         } )
-      }, 800)
+      }, 500)
     },
     defaultImage(e){
       e.target.src = 'https://media.comicbook.com/files/img/default-movie.png'

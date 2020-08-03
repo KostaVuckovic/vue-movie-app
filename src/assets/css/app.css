@@ -1,7 +1,7 @@
-/* purgecss start ignore */
+/*! purgecss start ignore */
 @tailwind  base;
 @tailwind  components;
-/* purgecss end ignore */
+/*! purgecss end ignore */
 @tailwind utilities;
 /*! purgecss start ignore */
 .theme-light{

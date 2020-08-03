@@ -95,7 +95,7 @@ export default {
           this.totalResults = response.data.total_results
           this.isLoading = false
         } )
-      }, 800)
+      }, 500)
     }
   }
 }
