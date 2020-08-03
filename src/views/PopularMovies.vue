@@ -11,7 +11,7 @@
       :z-index="49"
       ></loading>
 
-    <h1 class="text-copy-tekst text-2xl text-center mb-6">Most popular movies</h1>
+    <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6">Most popular movies</h1>
     
     <div class="flex justify-center py-4 px-3 bg-background-svetla content-wrapper">
 

@@ -20,7 +20,7 @@
       
         <div class="flex flex-col z-30">
           <div class="py-2 mb-2 flex flex-wrap text-tiny sm:text-base">
-            <span v-for="genre in genresForMovie" :key="genre.id" class="mr-2 mb-2 px-2 py-1 font-medium bg-background-tekst text-background-pozadina rounded">{{genre.name}}</span>
+            <span v-for="genre in genresForMovie" :key="genre.id" class="mr-2 mb-2 px-2 py-1 font-medium bg-background-tekst text-background-pozadina rounded lg:cursor-pointer" @click="goToGenre(genre.id)">{{genre.name}}</span>
           </div>
           <h1 v-if="movieDetails" class="text-3xl font-bold text-copy-tekst">{{movieDetails.title}}</h1>
           <div v-if="movieDetails" class="flex mt-2 text-base font-medium">
@@ -100,6 +100,9 @@ export default {
     },
     defaultImage(e){
       e.target.src = 'https://media.comicbook.com/files/img/default-movie.png'
+    },
+    goToGenre(id){
+      this.$router.push({ name: 'MoviesPerGenre', params: {genre: id}})
     }
   }
 

@@ -46,7 +46,7 @@
           </li>
 
           <li class="content-wrapper w-full lg:mt-auto bg-background-pozadina cursor-pointer" :class="getTheme" @click="setTheme()">
-            <p class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover">
+            <p class="flex items-center justify-center lg:justify-start h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 cursor-pointer hover:bg-background-svetlija hover:text-copy-nav_link_hover">
               <span key="fa-sun" v-if="getTheme==='theme-dark'"><i class="fas fa-sun text-3xl my-0 mx-4"></i></span>
               <span key="fa-moon" v-else ><i class="fas fa-moon text-3xl my-0 mx-4"></i></span>
               <span v-if="getTheme==='theme-dark'" class="hidden ml-4 text-xl lg:group-hover:block font-medium">Light</span>

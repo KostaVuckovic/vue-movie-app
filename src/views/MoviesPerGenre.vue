@@ -11,12 +11,12 @@
       :z-index="49"
       ></loading>
 
-    <h1 class="text-copy-tekst text-2xl text-center mb-6">All</h1>
+    <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6 lg:hover:cursor-default">All {{genreName}} movies</h1>
     <div class="flex justify-center py-4 px-3 bg-background-svetla">
       <div class="flex justify-around flex-wrap py-6 w-full sm:max-w-extraMonster md:w-14/15   md:max-w-extraLargeMonster lg:max-w-full lg:min-w-full xl:w-full xl:min-w-godzila xl:max-w-mediumGodzila">
       <div v-for="movie in allMoviesPerGenre" :key="movie.id" class="flex flex-col justify-evenly px-3 py-3 mx-3 lg:mx-2 xl:mx-3 mb-4 w-2/5 lg:w-2/13 min-w-smaller max-w-smallMed lg:min-w-smaller lg:max-w-smallHalf rounded bg-background-pozadina text-copy-tekst transition-all duration-300 cursor-pointer transform hover:border-narandza hover:scale-105" @click="movieDetails(movie.id)">
         <p class="text-center font-medium truncate mb-4">{{movie.title}}</p>
-        <img :src="'https://image.tmdb.org/t/p/w154' + movie.poster_path + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" class="rounded mt-2 max-w-full">
+        <img :src="'https://image.tmdb.org/t/p/w154' + movie.poster_path + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" class="rounded mt-2 max-w-full" @error="defaultImage">
         <div class="mt-2">
           <p><i class="fas fa-star text-zuta"></i> {{movie.vote_average}}/10</p>
           <p><i class="far fa-calendar-alt text-narandza"></i> {{movie.release_date}}</p>
@@ -49,10 +49,11 @@ data(){
     totalResults: 0,
     currentPage: 1,
     isLoading: false,
-    fullPage: true
+    fullPage: true,
+    genreName: ''
   }
 },
-created () {
+mounted() {
   this.showMovies(this.genreId)
 },
 computed: {
@@ -61,6 +62,10 @@ computed: {
 methods: {
   showMovies(id){
     this.isLoading = true
+    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US')
+    .then(response => {
+      this.genreName = response.data.genres.find(genre => genre.id == this.genreId).name.toLowerCase()
+    })
     //set timeout for fetching simulation
     setTimeout(() => {
       axios.get('https://api.themoviedb.org/3/discover/movie?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd', {params:{with_genres: id}})
@@ -86,10 +91,12 @@ methods: {
             this.isLoading = false
           } )
         }, 800)
-        
     },
     movieDetails(id){
       this.$router.push({path: `/movie/${id}`})
+    },
+    defaultImage(e){
+      e.target.src = 'https://media.comicbook.com/files/img/default-movie.png'
     },
 }
 }

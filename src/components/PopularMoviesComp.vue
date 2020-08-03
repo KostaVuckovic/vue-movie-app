@@ -1,7 +1,7 @@
 <template>
   <div class="content-wrapper bg-background-svetla py-3 px-2 mt-4" :class="getTheme">
     <div class="flex justify-between py-1 px-2 text-xl">
-      <p class="text-narandza md:text-2xl">Most Popular</p>
+      <p class="text-narandza md:text-2xl lg:hover:cursor-default">Most Popular</p>
       <router-link to="/popular-movies" class="group hover:text-narandza text-copy-tekst md:text-2xl transition duration-200 cursor-pointer">View All <i class="fas fa-arrow-circle-right text-copy-tekst group-hover:text-narandza transition duration-200" ></i></router-link>
     </div>
     

@@ -4,7 +4,7 @@
       <div class="relative w-full flex flex-col justify-center items-center">
         <img src="../../src/assets/cinema.svg" alt="movieglasses" class="w-40 sm:w-48 xl:w-56 transition-all duration-300 transform lg:group-hover:scale-75">
         <div class="lg:bg-background-pozadina transform lg:group-hover:translate-y-4 px-4 py-1 transition duration-200 absolute bottom-0 opacity-0 lg:group-hover:opacity-100 lg:rounded-full" :class="getTheme">
-          <p class="text-center font-mono text-copy-tekst font-bold" :class="getTheme">Designed with <i class="fas fa-heart text-crvena"></i> by Kosta Vuckovic</p>
+          <p class="text-center font-mono text-copy-tekst font-bold lg:hover:cursor-default" :class="getTheme">Designed with <i class="fas fa-heart text-crvena"></i> by Kosta Vuckovic</p>
         </div>
         
       </div>
