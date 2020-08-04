@@ -1,11 +1,11 @@
 <template>
-<div class="parentScroll w-4/5 max-w-large mt-8">
+<div class="w-4/5 max-w-large mt-8">
   <SearchFocus @keyup="focusSearch" />
   <div class="relative">
   <input
         type="text"
         placeholder="Search (Press  &quot;/&quot; to focus)"
-        class="childScroll search-input bg-tekst border border-svetla rounded-full px-4 pl-10 py-2 outline-none focus:border-narandza w-full"
+        class="search-input bg-tekst border border-svetla rounded-full px-4 pl-10 py-2 outline-none focus:border-narandza w-full"
         ref="search"
         v-model="searchQuery"
         id="element"
@@ -143,53 +143,6 @@ methods: {
     goToMovie(id){
       this.$router.push({path: `/movie/${id}`})
     },
-    // scrollIntoView(parent, child) {
-  
-    //   const parentBounding = parent.getBoundingClientRect(),
-    //     clientBounding = child.getBoundingClientRect();
-      
-    //   const parentBottom = parentBounding.bottom,
-    //     parentTop = parentBounding.top,
-    //     clientBottom = clientBounding.bottom,
-    //     clientTop = clientBounding.top;
-      
-    //   if (parentTop >= clientTop) {
-    //     scrollTo(parent, -(parentTop - clientTop), 300);
-    //   } else if (clientBottom > parentBottom) {
-    //     scrollTo(parent, clientBottom - parentBottom, 300);
-    //   }
-      
-    // },
-    // scrollTo(element, to, duration) {
-  
-    //   let start = element.scrollTop,
-    //     currentTime = 0,
-    //     increment = 20;
-      
-    //   let animateScroll = function() {
-    //     currentTime += increment;
-        
-    //     let val = this.easeInOutQuad(currentTime, start, to, duration);
-    //     element.scrollTop = val;
-        
-    //     if (currentTime < duration) {
-    //       setTimeout(animateScroll, increment);
-    //     }
-    //   };
-      
-    //   animateScroll();
-    // },
-    // easeInOutQuad(time, startPos, endPos, duration) {
-    //   time /= duration / 2;
-      
-    //   if (time < 1) return (endPos / 2) * time * time + startPos;
-    // time--;
-    //   return (-endPos / 2) * (time * (time - 2) - 1) + startPos;
-    // },
-    // scrollIntoView(){
-    //   let element = document.querySelector('.search-input')
-    //   element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
-    // },
     hideNavBar(){
       this.$store.dispatch('hideNavBar', screen.width)
     },
