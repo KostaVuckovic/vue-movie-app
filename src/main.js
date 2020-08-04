@@ -8,6 +8,21 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css';
 import VueFuse from 'vue-fuse'
 import store from './store'
+var VueScrollTo = require('vue-scrollto');
+ 
+Vue.use(VueScrollTo, {
+  container: "body",
+  duration: 400,
+  easing: "ease-in-out",
+  offset: 0,
+  force: true,
+  cancelable: true,
+  onStart: false,
+  onDone: false,
+  onCancel: false,
+  x: false,
+  y: true
+})
 
 Vue.use(VueFuse)
 
