@@ -1,6 +1,8 @@
 <template>
   <div class="pt-4 mb-16 lg:mb-0 lg:ml-16 min-h-screen">
 
+    <Preloader/>
+
     <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6 lg:hover:cursor-default">All {{genreName}} movies</h1>
     <div class="flex justify-center py-4 px-3 bg-background-svetla">
       <div class="flex justify-around flex-wrap py-6 w-full sm:max-w-extraMonster md:w-14/15   md:max-w-extraLargeMonster lg:max-w-full lg:min-w-full xl:w-full xl:min-w-godzila xl:max-w-mediumGodzila">
@@ -21,12 +23,14 @@
 <script>
 import axios from 'axios'
 import Pagination from '@/components/Pagination.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import Preloader from '../components/Preloader.vue'
 
 export default {
 name: 'MoviesPerGenre',
 components: {
     Pagination,
+    Preloader
 },
 data(){
   return{
@@ -39,7 +43,8 @@ data(){
   }
 },
 mounted() {
-  this.showMovies(this.genreId)
+  this.showMovies(this.genreId),
+  this.toggleLoad()
 },
 computed: {
   ...mapGetters(['getTheme'])
@@ -57,6 +62,7 @@ methods: {
         this.allMoviesPerGenre = response.data.results
         this.totalPages = response.data.total_pages
         this.totalResults = response.data.total_results
+        this.endOfLoading()
       })
     }, 1200)
   },
@@ -79,6 +85,7 @@ methods: {
     defaultImage(e){
       e.target.src = 'https://media.comicbook.com/files/img/default-movie.png'
     },
+    ...mapActions(['endOfLoading', 'toggleLoad'])
 }
 }
 </script>

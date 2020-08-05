@@ -53,7 +53,6 @@ export default {
       backDrop: '',
       genresForMovie: null,
       recommendedMovies: null,
-      rendering: true,
     }
   },
   mounted(){

@@ -1,6 +1,7 @@
 <template>
   <div class="pt-4 mb-16 lg:mb-0 lg:ml-16 min-h-screen">
 
+    <Preloader/>
 
     <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6">Top rated movies</h1>
 
@@ -25,12 +26,14 @@
 <script>
 import axios from 'axios'
 import Pagination from '@/components/Pagination.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import Preloader from '../components/Preloader.vue'
 
 export default {
   name: 'TopRatedMovies',
   components: {
     Pagination,
+    Preloader
   },
   data(){
     return{
@@ -41,7 +44,8 @@ export default {
     }
   },
   created(){
-    this.getTopRatedMovies()
+    this.getTopRatedMovies(),
+    this.toggleLoad()
   },
   computed: {
     ...mapGetters(['getTheme'])
@@ -56,6 +60,7 @@ export default {
           this.allTopRatedMovies = response.data.results
           this.totalPages = response.data.total_pages
           this.totalResults = response.data.total_results
+          this.endOfLoading()
         })
       }, 1200)
     },
@@ -73,7 +78,8 @@ export default {
           this.totalResults = response.data.total_results
         } )
       }, 500)
-    }
+    },
+    ...mapActions(['endOfLoading', 'toggleLoad'])
   }
 }
 </script>

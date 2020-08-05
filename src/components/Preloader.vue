@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="isActiveLoad" class="flex justify-center items-center w-full h-full absolute z-40 bg-background-pozadina">
+    <div v-if="isActiveLoad" class="flex justify-center items-center w-full h-full absolute top-0 left-0 z-40 bg-background-pozadina">
       <div class="flex">
 				<div class="circle w-6 h-6 m-3 bg-background-narandza rounded-full transform scale-0"></div>
 				<div class="circle w-6 h-6 m-3 bg-background-narandza rounded-full transform scale-0"></div>

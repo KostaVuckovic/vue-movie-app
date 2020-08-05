@@ -1,6 +1,8 @@
 <template>
   <div class="pt-4 mb-16 lg:mb-0 lg:ml-16 min-h-screen" :class="getTheme">
 
+    <Preloader/>
+
     <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6">Most popular movies</h1>
     
     <div class="flex justify-center py-4 px-3 bg-background-svetla content-wrapper">
@@ -28,12 +30,14 @@
 <script>
 import axios from 'axios'
 import Pagination from '@/components/Pagination.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import Preloader from '../components/Preloader.vue'
 
 export default {
   name: 'PopularMovies',
   components: {
     Pagination,
+    Preloader
   },
   data(){
     return{
@@ -44,7 +48,8 @@ export default {
     }
   },
   mounted(){
-    this.getPopularMovies(this.currentPage)
+    this.getPopularMovies(this.currentPage),
+    this.toggleLoad()
     
   },
   computed: {
@@ -60,6 +65,7 @@ export default {
           this.allPopularMovies = response.data.results
           this.totalPages = response.data.total_pages
           this.totalResults = response.data.total_results
+        this.endOfLoading()
         })
       }, 1200)
     },
@@ -77,7 +83,8 @@ export default {
           this.totalResults = response.data.total_results
         } )
       }, 500)
-    }
+    },
+    ...mapActions(['endOfLoading', 'toggleLoad'])
   }
 }
 </script>

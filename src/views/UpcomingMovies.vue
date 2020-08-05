@@ -1,6 +1,7 @@
 <template>
   <div class="pt-4 mb-16 lg:mb-0 lg:ml-16 min-h-screen" :class="getTheme">
 
+    <Preloader/>
   
     <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6">Upcoming movies</h1> 
 
@@ -23,12 +24,14 @@
 <script>
 import axios from 'axios'
 import Pagination from '@/components/Pagination.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import Preloader from '../components/Preloader.vue'
 
 export default {
   name: 'PopularMovies',
   components: {
-    Pagination
+    Pagination,
+    Preloader
   },
   data(){
     return{
@@ -39,7 +42,8 @@ export default {
     }
   },
   mounted(){
-    this.getUpcomingMovies()
+    this.getUpcomingMovies(),
+    this.toggleLoad()
   },
   computed: {
     ...mapGetters(['getTheme'])
@@ -53,6 +57,7 @@ export default {
           this.allUpcomingMovies = response.data.results
           this.totalPages = response.data.total_pages
           this.totalResults = response.data.total_results
+          this.endOfLoading()
         })
       }, 1200)
     },
@@ -73,7 +78,8 @@ export default {
     },
     defaultImage(e){
       e.target.src = 'https://media.comicbook.com/files/img/default-movie.png'
-    }
+    },
+    ...mapActions(['endOfLoading', 'toggleLoad'])
   }
 }
 </script>
