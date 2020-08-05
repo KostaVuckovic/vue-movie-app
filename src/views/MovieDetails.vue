@@ -1,17 +1,19 @@
 <template>
+<transition name="fade">
   <div class="bg-background-svetla min-h-screen">
 
     <!-- loader -->
-    <!-- <loading :active.sync="isLoading" 
+    <loading :active.sync="isLoading" 
       :is-full-page="fullPage"
       :loader="'dots'" 
       :opacity="1"
       :color="getTheme==='theme-dark' ? '#ff5722' : '#222831'"
       :background-color="getTheme==='theme-dark' ? '#222831' : '#DFDFDF'"
       :z-index="49"
-      ></loading>   -->
+      v-if="rendering"
+      ></loading>  
 
-      <loader v-if="rendering" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="100" name="circular"></loader>
+      <!-- <loader v-if="rendering" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="100" name="circular"></loader> -->
 
 
     <div v-else class="content-wrapper bg-background-svetla mb-16 lg:mb-0 lg:ml-16 " :class="[{getTheme}, getTheme === 'theme-dark' ? 'wrapper' : 'light-wrapper']">
@@ -42,20 +44,21 @@
     <RecommendedMoviesComp :recommendedMoviesProp="recommendedMovies" @sendToParent="movieDetailsRecommend"/>
   </div>
   </div>
+</transition>
 </template>
 
 <script>
 import axios from 'axios'
 import RecommendedMoviesComp from '../components/RecommendedMoviesComp.vue';
 import { mapGetters } from 'vuex'
-// import Loading from 'vue-loading-overlay';
-// import 'vue-loading-overlay/dist/vue-loading.css';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: 'MovieDetails',
   components: {
     RecommendedMoviesComp,
-    // Loading
+    Loading
   },
   data(){
     return{
@@ -65,9 +68,9 @@ export default {
       backDrop: '',
       genresForMovie: null,
       recommendedMovies: null,
-      rendering: true
-      // isLoading: false,
-      // fullPage: true
+      rendering: true,
+      isLoading: false,
+      fullPage: true
     }
   },
   mounted(){
@@ -79,7 +82,7 @@ export default {
   },
   methods: {
     getMovieDetails(id){
-      // this.isLoading = true
+      this.isLoading = true
       //set timeout for fetching simulation
       setTimeout(() => {
       axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US`)
@@ -89,7 +92,7 @@ export default {
         this.movieImage = response.data.poster_path
         this.backDrop = response.data.backdrop_path
         this.rendering = false
-        // this.isLoading = false
+        this.isLoading = false
       })
       }, 1200)
     },
