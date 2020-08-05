@@ -185,3 +185,29 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+.circle{
+  animation-name: scaleIn;
+  animation-duration: 1s;
+}
+
+@keyframes scaleIn{
+  0% {transform:scale(0)}
+  100% {transform:scale(1)}
+}
+
+.circle:nth-child(1){
+  animation-delay: 0s;
+}
+.circle:nth-child(2){
+  animation-delay: .1s;
+}
+.circle:nth-child(3){
+  animation-delay: .2s;
+}
+.circle:nth-child(4){
+  animation-delay: .3s;
+}
+.circle:nth-child(5){
+  animation-delay: .4s;
+}

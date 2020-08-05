@@ -1,16 +1,6 @@
 <template>
   <div class="pt-4 mb-16 lg:mb-0 lg:ml-16 min-h-screen">
 
-    <!-- loader -->
-    <loading :active.sync="isLoading" 
-      :is-full-page="fullPage"
-      :loader="'dots'" 
-      :opacity="1"
-      :color="getTheme==='theme-dark' ? '#ff5722' : '#222831'"
-      :background-color="getTheme==='theme-dark' ? '#222831' : '#DFDFDF'"
-      :z-index="49"
-      ></loading>
-
     <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6 lg:hover:cursor-default">All {{genreName}} movies</h1>
     <div class="flex justify-center py-4 px-3 bg-background-svetla">
       <div class="flex justify-around flex-wrap py-6 w-full sm:max-w-extraMonster md:w-14/15   md:max-w-extraLargeMonster lg:max-w-full lg:min-w-full xl:w-full xl:min-w-godzila xl:max-w-mediumGodzila">
@@ -32,14 +22,11 @@
 import axios from 'axios'
 import Pagination from '@/components/Pagination.vue'
 import { mapGetters } from 'vuex'
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
 name: 'MoviesPerGenre',
 components: {
     Pagination,
-    Loading
 },
 data(){
   return{
@@ -48,8 +35,6 @@ data(){
     totalPages: 0,
     totalResults: 0,
     currentPage: 1,
-    isLoading: false,
-    fullPage: true,
     genreName: ''
   }
 },
@@ -61,7 +46,6 @@ computed: {
 },
 methods: {
   showMovies(id){
-    this.isLoading = true
     axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US')
     .then(response => {
       this.genreName = response.data.genres.find(genre => genre.id == this.genreId).name.toLowerCase()
@@ -73,14 +57,12 @@ methods: {
         this.allMoviesPerGenre = response.data.results
         this.totalPages = response.data.total_pages
         this.totalResults = response.data.total_results
-        this.isLoading = false
       })
     }, 1200)
   },
   onPageChange(page) {
         let id = this.genreId
         this.currentPage = page;
-        this.isLoading = true
         //set timeout for fetching simulation
         setTimeout(() => {
           axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&page=${page}`, {params:{with_genres: id}})
@@ -88,7 +70,6 @@ methods: {
             this.allMoviesPerGenre = response.data.results
             this.totalPages = response.data.total_pages
             this.totalResults = response.data.total_results
-            this.isLoading = false
           } )
         }, 800)
     },

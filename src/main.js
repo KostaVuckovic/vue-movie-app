@@ -8,10 +8,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css';
 import VueFuse from 'vue-fuse'
 import store from './store'
-var VueScrollTo = require('vue-scrollto');
-import loader from "vue-ui-preloader";
-
-Vue.use(loader);
+const VueScrollTo = require('vue-scrollto');
  
 Vue.use(VueScrollTo, {
   container: "body",

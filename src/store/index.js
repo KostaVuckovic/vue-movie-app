@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     mobileScreen: false,
-    theme: localStorage.getItem('theme') || 'theme-dark'
+    theme: localStorage.getItem('theme') || 'theme-dark',
+    showLoader: true
   },
   getters: {
     isMobile(state){
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     getTheme(state){
       return state.theme
+    },
+    isActiveLoad(state){
+      return state.showLoader
     }
   },
   mutations: {
@@ -30,6 +34,12 @@ export default new Vuex.Store({
     SET_THEME(state){
       state.theme = state.theme === 'theme-dark' ? 'theme-light' : 'theme-dark'
       localStorage.setItem('theme', state.theme)
+    },
+    END_LOAD(state){
+      state.showLoader = false
+    },
+    TOGGLE_LOAD(state){
+      state.showLoader = true
     }
   },
   actions: {
@@ -41,6 +51,12 @@ export default new Vuex.Store({
     },
     setTheme({commit}){
       commit('SET_THEME')
+    },
+    endOfLoading({commit}){
+      commit('END_LOAD')
+    },
+    toggleLoad({commit}){
+      commit('TOGGLE_LOAD')
     }
   }
 })

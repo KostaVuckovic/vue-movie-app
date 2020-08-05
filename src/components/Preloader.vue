@@ -1,0 +1,28 @@
+<template>
+  <transition name="fade">
+    <div v-if="isActiveLoad" class="flex justify-center items-center w-full h-full absolute z-40 bg-background-pozadina">
+      <div class="flex">
+				<div class="circle w-6 h-6 m-3 bg-background-narandza rounded-full transform scale-0"></div>
+				<div class="circle w-6 h-6 m-3 bg-background-narandza rounded-full transform scale-0"></div>
+				<div class="circle w-6 h-6 m-3 bg-background-narandza rounded-full transform scale-0"></div>
+				<div class="circle w-6 h-6 m-3 bg-background-narandza rounded-full transform scale-0"></div>
+				<div class="circle w-6 h-6 m-3 bg-background-narandza rounded-full transform scale-0"></div>
+			</div>
+    </div>
+  </transition>  
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+name: 'Prelaoder',
+data(){
+  return{
+  }
+},
+computed:{
+  ...mapGetters(['isActiveLoad'])
+}
+}
+</script>

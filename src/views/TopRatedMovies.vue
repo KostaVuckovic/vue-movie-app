@@ -1,15 +1,6 @@
 <template>
   <div class="pt-4 mb-16 lg:mb-0 lg:ml-16 min-h-screen">
 
-  <!-- loader -->
-  <loading :active.sync="isLoading" 
-    :is-full-page="fullPage"
-    :loader="'dots'" 
-    :opacity="1"
-    :color="getTheme==='theme-dark' ? '#ff5722' : '#222831'"
-    :background-color="getTheme==='theme-dark' ? '#222831' : '#DFDFDF'"
-    :z-index="49"
-    ></loading>
 
     <h1 class="text-copy-tekst text-2xl lg:text-3xl xl:text-4xl text-center mb-6">Top rated movies</h1>
 
@@ -35,14 +26,11 @@
 import axios from 'axios'
 import Pagination from '@/components/Pagination.vue'
 import { mapGetters } from 'vuex'
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: 'TopRatedMovies',
   components: {
     Pagination,
-    Loading
   },
   data(){
     return{
@@ -50,8 +38,6 @@ export default {
       totalPages: 0,
       totalResults: 0,
       currentPage: 1,
-      isLoading: false,
-      fullPage: true
     }
   },
   created(){
@@ -63,7 +49,6 @@ export default {
   methods: {
     //get all top rated movies
     getTopRatedMovies(){
-      this.isLoading = true
       //set timeout for fetching simulation
       setTimeout(() => {
         axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US&page=1')
@@ -71,7 +56,6 @@ export default {
           this.allTopRatedMovies = response.data.results
           this.totalPages = response.data.total_pages
           this.totalResults = response.data.total_results
-          this.isLoading = false
         })
       }, 1200)
     },
@@ -80,7 +64,6 @@ export default {
     },
     onPageChange(page) {
       this.currentPage = page;
-      this.isLoading = true
       //set timeout for fetching simulation
       setTimeout(() => {
         axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&page=${page}`)
@@ -88,7 +71,6 @@ export default {
           this.allTopRatedMovies = response.data.results
           this.totalPages = response.data.total_pages
           this.totalResults = response.data.total_results
-          this.isLoading = false
         } )
       }, 500)
     }

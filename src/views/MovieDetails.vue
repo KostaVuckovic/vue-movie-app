@@ -1,22 +1,9 @@
 <template>
-<transition name="fade">
   <div class="bg-background-svetla min-h-screen">
 
-    <!-- loader -->
-    <loading :active.sync="isLoading" 
-      :is-full-page="fullPage"
-      :loader="'dots'" 
-      :opacity="1"
-      :color="getTheme==='theme-dark' ? '#ff5722' : '#222831'"
-      :background-color="getTheme==='theme-dark' ? '#222831' : '#DFDFDF'"
-      :z-index="49"
-      v-if="rendering"
-      ></loading>  
+    <Preloader/>
 
-      <!-- <loader v-if="rendering" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="100" name="circular"></loader> -->
-
-
-    <div v-else class="content-wrapper bg-background-svetla mb-16 lg:mb-0 lg:ml-16 " :class="[{getTheme}, getTheme === 'theme-dark' ? 'wrapper' : 'light-wrapper']">
+    <div class="content-wrapper bg-background-svetla mb-16 lg:mb-0 lg:ml-16 " :class="[{getTheme}, getTheme === 'theme-dark' ? 'wrapper' : 'light-wrapper']">
     <div class="w-full max-w-mediumGodzila xl:mx-auto relative overflow-hidden object-cover py-4">
     <img v-if="backDrop" :src="'https://image.tmdb.org/t/p/w1280' + backDrop + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" alt="movie_image" class="hidden lg:block rounded absolute top-0 left-0 object-cover" :class="getTheme === 'theme-dark' ? 'opacity-10' : 'opacity-20'">
     <div v-if="movieImage" class="flex flex-col lg:flex-row items-center lg:items-start px-6 py-6 z-30">
@@ -44,21 +31,19 @@
     <RecommendedMoviesComp :recommendedMoviesProp="recommendedMovies" @sendToParent="movieDetailsRecommend"/>
   </div>
   </div>
-</transition>
 </template>
 
 <script>
 import axios from 'axios'
 import RecommendedMoviesComp from '../components/RecommendedMoviesComp.vue';
-import { mapGetters } from 'vuex'
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import { mapGetters, mapActions } from 'vuex'
+import Preloader from '../components/Preloader.vue'
 
 export default {
   name: 'MovieDetails',
   components: {
     RecommendedMoviesComp,
-    Loading
+    Preloader
   },
   data(){
     return{
@@ -69,20 +54,18 @@ export default {
       genresForMovie: null,
       recommendedMovies: null,
       rendering: true,
-      isLoading: false,
-      fullPage: true
     }
   },
   mounted(){
     this.getMovieDetails(this.movieId),
-    this.getRecommendedMovies(this.movieId)
+    this.getRecommendedMovies(this.movieId),
+    this.toggleLoad()
   },
   computed: {
     ...mapGetters(['getTheme'])
   },
   methods: {
     getMovieDetails(id){
-      this.isLoading = true
       //set timeout for fetching simulation
       setTimeout(() => {
       axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US`)
@@ -91,8 +74,7 @@ export default {
         this.genresForMovie = response.data.genres
         this.movieImage = response.data.poster_path
         this.backDrop = response.data.backdrop_path
-        this.rendering = false
-        this.isLoading = false
+        this.endOfLoading()
       })
       }, 1200)
     },
@@ -110,7 +92,8 @@ export default {
     },
     goToGenre(id){
       this.$router.push({ name: 'MoviesPerGenre', params: {genre: id}})
-    }
+    },
+    ...mapActions(['endOfLoading', 'toggleLoad'])
   }
 
 }
