@@ -182,13 +182,14 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 
 .circle{
   animation-name: scaleIn;
   animation-duration: 1s;
+  transition: all ease .2s;
 }
 
 @keyframes scaleIn{

@@ -55,7 +55,7 @@ export default {
     },
     movieDetails(id){
       this.$router.push({path: `movie/${id}`})
-    }
+    },
   }
 }
 </script> 

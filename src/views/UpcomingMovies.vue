@@ -38,21 +38,24 @@ export default {
       allUpcomingMovies: null,
       totalPages: 0,
       totalResults: 0,
-      currentPage: 1,
+      currentPage: parseInt(localStorage.getItem('current-page')) || 1,
     }
   },
   mounted(){
-    this.getUpcomingMovies(),
+    this.getUpcomingMovies(this.currentPage),
     this.toggleLoad()
+  },
+  destroyed(){
+    localStorage.removeItem('current-page')
   },
   computed: {
     ...mapGetters(['getTheme'])
   },
   methods: {
-    getUpcomingMovies(){
+    getUpcomingMovies(page){
       //set timeout for fetching simulation
       setTimeout(() => {
-        axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US&page=1')
+        axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US&page=${page}`)
         .then(response => {
           this.allUpcomingMovies = response.data.results
           this.totalPages = response.data.total_pages
@@ -66,6 +69,7 @@ export default {
     },
     onPageChange(page) {
       this.currentPage = page;
+      localStorage.setItem('current-page', this.currentPage)
       //set timeout for fetching simulation
       setTimeout(() => {
         axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&page=${page}`)

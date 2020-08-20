@@ -148,7 +148,7 @@ methods: {
     },
     showNavBar(){
       this.$store.dispatch('showNavBar', screen.width)
-    }
+    },
 }
 }
 </script>

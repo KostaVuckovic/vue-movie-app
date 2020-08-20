@@ -73,7 +73,9 @@ export default {
         this.genresForMovie = response.data.genres
         this.movieImage = response.data.poster_path
         this.backDrop = response.data.backdrop_path
-        this.endOfLoading()
+        // setTimeout(() => {
+          this.endOfLoading()
+        // }, 1200)
       })
       }, 1200)
     },

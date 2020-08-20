@@ -14,14 +14,14 @@
           </li>
 
           <li class="w-full" @click="hideGenresIfOpen()">
-            <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover" :class="getTheme">
+            <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 lg:hover:bg-background-svetlija lg:hover:text-copy-nav_link_hover" :class="getTheme">
               <i class="fas fa-home text-3xl my-0 lg:mx-3"></i>
               <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Home</span>
             </router-link>
           </li>
 
           <li class=" w-full lg:active:text-narandza" @click="showGenres" :class="{active: isActive}">
-            <p class="flex items-center justify-center lg:justify-start h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 cursor-pointer hover:bg-background-svetlija hover:text-copy-nav_link_hover">
+            <p class="flex items-center justify-center lg:justify-start h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 cursor-pointer lg:hover:bg-background-svetlija lg:hover:text-copy-nav_link_hover">
               <i class="fas fa-align-justify text-3xl my-0 lg:mx-4"></i>
               <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Genres</span>
             </p>
@@ -39,14 +39,14 @@
           </li>
 
           <li class="content-wrapper w-full bg-background-pozadina" :class="getTheme">
-            <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 hover:bg-background-svetlija hover:text-copy-nav_link_hover">
+            <router-link to="/" class="flex justify-center lg:justify-start items-center h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 lg:hover:bg-background-svetlija lg:hover:text-copy-nav_link_hover">
               <i class="far fa-calendar-check text-3xl my-0 mx-4"></i>
               <span class="hidden ml-4 text-xl lg:group-hover:block font-medium">Year</span>
             </router-link>
           </li>
 
           <li class="content-wrapper w-full lg:mt-auto bg-background-pozadina cursor-pointer" :class="getTheme" @click="setTheme()">
-            <p class="flex items-center justify-center lg:justify-start h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 cursor-pointer hover:bg-background-svetlija hover:text-copy-nav_link_hover">
+            <p class="flex items-center justify-center lg:justify-start h-full lg:h-20 text-copy-svetlija transition-all ease-in-out duration-200 cursor-pointer lg:hover:bg-background-svetlija lg:hover:text-copy-nav_link_hover">
               <span key="fa-sun" v-if="getTheme==='theme-dark'"><i class="fas fa-sun text-3xl my-0 mx-4"></i></span>
               <span key="fa-moon" v-else ><i class="fas fa-moon text-3xl my-0 mx-4"></i></span>
               <span v-if="getTheme==='theme-dark'" class="hidden ml-4 text-xl lg:group-hover:block font-medium">Light</span>

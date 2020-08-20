@@ -12,7 +12,7 @@
         <div v-for="(movie, index) in allPopularMovies" :key="index" class="flex flex-col justify-evenly px-3 py-3 mx-3 lg:mx-2 xl:mx-3 mb-4 w-2/5 lg:w-2/13 min-w-smaller max-w-smallMed lg:min-w-smaller lg:max-w-smallHalf rounded bg-background-pozadina text-copy-tekst transition-all duration-300 cursor-pointer transform hover:border-narandza hover:scale-105" @click="movieDetails(movie.id)">
 
           <p class="text-center font-medium truncate mb-4">{{movie.title}}</p>
-          <img :src="'https://image.tmdb.org/t/p/w154' + movie.poster_path + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" class="rounded mt-2 max-w-full">
+          <img :src="'https://image.tmdb.org/t/p/w154' + movie.poster_path + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" @error="defaultImage" class="rounded mt-2 max-w-full">
 
           <div class="mt-2 text-tiny">
 
@@ -44,23 +44,25 @@ export default {
       allPopularMovies: null,
       totalPages: 0,
       totalResults: 0,
-      currentPage: 1,
+      currentPage: parseInt(localStorage.getItem('current-page')) || 1,
     }
   },
   mounted(){
     this.getPopularMovies(this.currentPage),
     this.toggleLoad()
-    
+  },
+  destroyed(){
+    localStorage.removeItem('current-page')
   },
   computed: {
     ...mapGetters(['getTheme'])
   },
   methods: {
     //get all popular movies
-    getPopularMovies(){
+    getPopularMovies(page){
       //set timeout for fetching simulation
       setTimeout(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd`)
+        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&page=${page}`)
         .then(response => {
           this.allPopularMovies = response.data.results
           this.totalPages = response.data.total_pages
@@ -74,15 +76,19 @@ export default {
     },
     onPageChange(page) {
       this.currentPage = page;
+      localStorage.setItem('current-page', this.currentPage)
       //set timeout for fetching simulation
       setTimeout(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&page=${page}`)
+        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&page=${page}`)
         .then(response => {
           this.allPopularMovies = response.data.results
           this.totalPages = response.data.total_pages
           this.totalResults = response.data.total_results
         } )
       }, 500)
+    },
+    defaultImage(e){
+      e.target.src = 'https://media.comicbook.com/files/img/default-movie.png'
     },
     ...mapActions(['endOfLoading', 'toggleLoad'])
   }
