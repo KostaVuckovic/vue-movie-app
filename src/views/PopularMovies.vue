@@ -14,8 +14,6 @@
           <p class="text-center font-medium truncate mb-4 transform group-hover:-translate-x-48 transition duration-500">{{movie.title}}</p>
           <img :src="'https://image.tmdb.org/t/p/w185' + movie.poster_path + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" @error="defaultImage" class="rounded mt-2 max-w-full transform group-hover:scale-150 transition duration-700">
 
-          <!-- <p class="transform scale-0 group-hover:scale-100 rounded top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition duration-500 absolute p-1 bg-background-svetla text-base text-center text-copy-tekst">Details <i class="fas fa-angle-double-right"></i></p> -->
-
           <div class="mt-2 text-tiny transform group-hover:translate-x-48 transition duration-500">
 
             <p><i class="fas fa-star text-zuta"></i> {{movie.vote_average}}/10</p>

@@ -38,26 +38,29 @@ data(){
     allMoviesPerGenre: null,
     totalPages: 0,
     totalResults: 0,
-    currentPage: 1,
+    currentPage: parseInt(localStorage.getItem('current-page')) || 1,
     genreName: ''
   }
 },
 mounted() {
-  this.showMovies(this.genreId),
+  this.showMovies(this.genreId, this.currentPage),
   this.toggleLoad()
+},
+destroyed(){
+  localStorage.removeItem('current-page')
 },
 computed: {
   ...mapGetters(['getTheme'])
 },
 methods: {
-  showMovies(id){
+  showMovies(id, page){
     axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US')
     .then(response => {
       this.genreName = response.data.genres.find(genre => genre.id == this.genreId).name.toLowerCase()
     })
     //set timeout for fetching simulation
     setTimeout(() => {
-      axios.get('https://api.themoviedb.org/3/discover/movie?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd', {params:{with_genres: id}})
+      axios.get('https://api.themoviedb.org/3/discover/movie?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd', {params:{with_genres: id, page: page}})
       .then(response => {
         this.allMoviesPerGenre = response.data.results
         this.totalPages = response.data.total_pages
@@ -69,6 +72,7 @@ methods: {
   onPageChange(page) {
         let id = this.genreId
         this.currentPage = page;
+        localStorage.setItem('current-page', this.currentPage)
         //set timeout for fetching simulation
         setTimeout(() => {
           axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&page=${page}`, {params:{with_genres: id}})
