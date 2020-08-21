@@ -362,12 +362,13 @@ module.exports = {
     visibility: ['responsive', 'hover', 'focus'],
     fontWeight: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     verticalAlign: ['responsive', 'hover', 'focus'],
-    objectFit: ['responsive', 'hover', 'focus'],
+    objectFit: ['responsive', 'hover', 'focus', 'group-hover'],
     cursor: ['responsive', 'hover', 'focus'],
     wordBreak: ['responsive', 'hover', 'focus'],
     lineHeight: ['responsive', 'hover', 'focus'],
     height: ['responsive', 'hover', 'focus'],
-    maxHeight: ['responsive', 'hover', 'focus'],
+    maxHeight: ['responsive', 'hover', 'focus', 'group-hover'],
+    maxWidth: ['responsive', 'hover', 'focus', 'group-hover']
   },
   plugins: [],
   
