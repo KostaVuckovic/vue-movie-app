@@ -3,7 +3,7 @@
 
     <Preloader/>
 
-    <div class="content-wrapper bg-background-svetla mb-16 lg:mb-0 lg:ml-16 " :class="[{getTheme}, getTheme === 'theme-dark' ? 'wrapper' : 'light-wrapper']">
+    <div class="content-wrapper bg-background-svetla mb-16 lg:mb-0 lg:ml-16" :class="[{getTheme}, getTheme === 'theme-dark' ? 'wrapper' : 'light-wrapper']">
     <div class="w-full max-w-mediumGodzila xl:mx-auto relative overflow-hidden object-cover py-4">
     <img v-if="backDrop" :src="'https://image.tmdb.org/t/p/w1280' + backDrop + '?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd'" alt="movie_image" class="hidden lg:block rounded absolute top-0 left-0 object-cover" :class="getTheme === 'theme-dark' ? 'opacity-10' : 'opacity-20'">
     <div v-if="movieImage" class="flex flex-col lg:flex-row items-center lg:items-start px-6 py-6 z-30">
@@ -27,7 +27,6 @@
         </div>
     </div>
     </div>
-    <!-- <ImagesPerMovie :imagesPerMovieProp="imagesPerMovie"/> -->
     <RecommendedMoviesComp :recommendedMoviesProp="recommendedMovies" @sendToParent="movieDetailsRecommend"/>
   </div>
   </div>
@@ -96,7 +95,6 @@ export default {
     },
     ...mapActions(['endOfLoading', 'toggleLoad'])
   }
-
 }
 </script>
 
