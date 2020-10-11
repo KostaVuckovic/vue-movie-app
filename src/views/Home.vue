@@ -1,5 +1,5 @@
 <template>
-<div class="mb-16 lg:mb-0 lg:ml-16">
+<div class="lg:ml-16">
   <LandingComp />
   <PopularMoviesComp :popularMoviesProp="popularMovies" @sendToParent="movieDetails"/>
   <UpcomingMoviesComp :upcomingMoviesProp="upcomingMovies" @sendToParent="movieDetails"/>

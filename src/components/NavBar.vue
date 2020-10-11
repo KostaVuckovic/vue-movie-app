@@ -1,5 +1,5 @@
 <template>
-      <nav :class="[{hidden:this.isMobile},getTheme === 'theme-dark' ? 'nav-dark' : 'nav-light']" class="navigation w-screen lg:w-16 h-16 lg:h-screen lg:overflow-y-scroll lg:overflow-x-hidden lg:hover:w-64 fixed bottom-0 lg:left-0 z-50 transition-all duration-200 ease-in-out">
+      <nav :class="[{hidden:this.isMobile}, {'hideNav': !showNav},getTheme === 'theme-dark' ? 'nav-dark' : 'nav-light']" class="navigation w-screen lg:w-16 h-16 lg:h-screen lg:overflow-y-scroll lg:overflow-x-hidden lg:hover:w-64 fixed bottom-0 lg:left-0 z-50 transition-all duration-200 ease-in-out">
 
         <ul class="content-wrapper flex lg:flex-col justify-evenly lg:items-center lg:justify-start py-0 px-0 bg-background-pozadina h-full group" :class="getTheme">
 
@@ -68,16 +68,35 @@ export default {
   data(){
     return{
       genres: null,
-      isActive: false
+      isActive: false,
+      showNav: true,
+      lastScrollPosition: 0
     }
   },
   mounted(){
-    this.getGenres();
+    this.getGenres(),
+    window.addEventListener('scroll', this.onScroll)
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.onScroll)
   },
   computed: {
     ...mapGetters(['isMobile', 'getTheme'])
   },
   methods: {
+    onScroll () {
+      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+      if (currentScrollPosition < 0) {
+        return
+      }
+      // Stop executing this function if the difference between
+      // current scroll position and last scroll position is less than some offset
+      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+        return
+      }
+      this.showNav = currentScrollPosition < this.lastScrollPosition
+      this.lastScrollPosition = currentScrollPosition
+    },
     getGenres(){
       axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=a06cfa7f0853984e8a69e2db2fd1b8fd&language=en-US')
       .then(response => {

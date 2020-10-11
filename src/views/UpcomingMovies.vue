@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-4 mb-16 lg:mb-0 lg:ml-16 min-h-screen" :class="getTheme">
+  <div class="pt-4 lg:ml-16 min-h-screen" :class="getTheme">
 
     <Preloader/>
   
