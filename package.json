@@ -15,7 +15,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "nprogress": "^0.2.0",
-    "postcss": "^7.0.31",
+    "postcss": "^7.0.36",
     "postcss-loader": "^3.0.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",
